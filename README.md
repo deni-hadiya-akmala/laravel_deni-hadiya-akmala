@@ -48,12 +48,7 @@ Proyek ini mencakup beberapa soal pemrograman yang menggunakan framework Laravel
     ```bash
     php artisan migrate --seed
     ```
-8. **Install dependencies front-end**:
-    ```bash
-    npm install
-    npm run dev
-    ```
-9. **Jalankan server Laravel**:
+8. **Jalankan server Laravel**:
     ```bash
     php artisan serve
     ```

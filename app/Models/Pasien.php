@@ -10,4 +10,8 @@ class Pasien extends Model
     use HasFactory;
     protected $guarded =[];
     protected $table = 'pasien'; 
+    public function rumahSakit()
+    {
+        return $this->belongsTo(RumahSakit::class);
+    }
 }

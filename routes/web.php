@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\PasienController;
+use App\Http\Controllers\RumahSakitController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +29,8 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::post('/logout', 'logout')->name('logout');
 });
+
+
+
+Route::apiResource('pasien', PasienController::class);
+Route::apiResource('rumahsakit', RumahSakitController::class);

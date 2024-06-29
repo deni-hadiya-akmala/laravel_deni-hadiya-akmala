@@ -17,28 +17,9 @@ class PasienController extends Controller
             // Mulai query builder
             $query = Pasien::with('rumahSakit');
 
-            // Filter berdasarkan rentang tanggal jika tersedia
-            // Inisialisasi variabel
-            $today = Carbon::today();
-            $today_f = $today->format('m/d/Y');
-            $data_tanggal = "";
-            $dateBetween = [];
-
-            // Memproses input tanggal
-            if ($request->input('dateBetween_p')) {
-                $filter_tanggal = explode(" - ", $request->input('dateBetween_p'));
-
-                if (count($filter_tanggal) === 2) {
-                    // Konversi format tanggal dari d/m/Y ke Y-m-d
-                    foreach ($filter_tanggal as $date) {
-                        $dateObject = Carbon::createFromFormat('d/m/Y', trim($date));
-                        if ($dateObject !== false) {
-                            $dateBetween[] = $dateObject->format('Y-m-d');
-                        }
-                    }
-                }
+            if ($request->id_rumah_sakit) {
+                $query->where('rumah_sakit_id', $request->id_rumah_sakit);
             }
-
             return DataTables::of($query)
                 ->addColumn('test', function ($row) {
                     return '-';

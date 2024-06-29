@@ -3,7 +3,26 @@
 @section('content')
     <div class="container mt-4">
         <h1>Pasien</h1>
-        <button class="btn btn-primary mb-2" onclick="showCreateForm()">Tambah Pasien</button>
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <button class="btn btn-primary mb-2" onclick="showCreateForm()">Tambah Pasien</button>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="filterRumahSakit">Filter by Rumah Sakit</label>
+                    <select id="filterRumahSakit" class="form-control">
+                        <option value="">Semua Rumah Sakit</option>
+                        @foreach($rumah_sakits as $rumah_sakit)
+                            <option value="{{ $rumah_sakit->id }}">{{ $rumah_sakit->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+       
+
+        
+
         <table class="table table-bordered" id="pasienTable">
             <thead>
                 <tr>
@@ -71,7 +90,10 @@
                 serverSide: true,
                 ajax: {
                     url: "{{ route('pasien.index') }}",
-                    type: 'GET'
+                    type: 'GET',
+                    data: function(d) {
+                        d.id_rumah_sakit = $('#filterRumahSakit').val();
+                    }
                 },
                 columns: [
                     { data: 'id', name: 'id' },
@@ -86,6 +108,10 @@
                         searchable: false
                     }
                 ]
+            });
+
+            $('#filterRumahSakit').change(function() {
+                table.ajax.reload();
             });
 
             $('#pasienForm').on('submit', function(e) {

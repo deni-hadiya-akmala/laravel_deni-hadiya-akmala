@@ -43,6 +43,9 @@ class PasienController extends Controller
                 ->addColumn('test', function ($row) {
                     return '-';
                 })
+                ->addColumn('rumah_sakit', function ($row) {
+                    return "(". $row->rumahSakit->id .") ". $row->rumahSakit->nama;
+                })
                 ->addColumn('action', function ($row) {
                     $btn = '<button class="btn btn-warning btn-sm edit" data-id="' . $row->id . '">Ubah</button>';
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="' . $row->id . '">Hapus</button>';
@@ -52,12 +55,61 @@ class PasienController extends Controller
                 ->make(true);
         }
 
-        // Pengambilan data penjualan terbanyak dan terendah
-          $topSelling ="";
-          $bottomSelling ="";
+        $rumah_sakits = RumahSakit::all();
         
 
-        return view('pasien.index', compact('topSelling', 'bottomSelling'));
+        return view('pasien.index', compact('rumah_sakits'));
+    }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nama_pasien' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'no_telepon' => 'required|string|max:15',
+            'id_rumah_sakit' => 'required',
+        ]);
+
+        Pasien::create([
+            'nama' => $request->nama_pasien,
+            'alamat' => $request->alamat,
+            'no_telepon' => $request->no_telepon,
+            'rumah_sakit_id' => $request->id_rumah_sakit,
+        ]);
+
+        return response()->json(['success' => 'Pasien created successfully.']);
+    }
+
+    public function show($id)
+    {
+        $pasien = Pasien::findOrFail($id);
+        return response()->json($pasien);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama_pasien' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'no_telepon' => 'required|string|max:15',
+            'id_rumah_sakit' => 'required',
+        ]);
+
+        $pasien = Pasien::findOrFail($id);
+        $pasien->update([
+            'nama' => $request->nama_pasien,
+            'alamat' => $request->alamat,
+            'no_telepon' => $request->no_telepon,
+            'rumah_sakit_id' => $request->id_rumah_sakit,
+        ]);
+
+        return response()->json(['success' => 'Pasien updated successfully.']);
+    }
+
+    public function destroy($id)
+    {
+        $pasien = Pasien::findOrFail($id);
+        $pasien->delete();
+        return response()->json(['success' => 'Pasien deleted successfully.']);
     }
 
 }

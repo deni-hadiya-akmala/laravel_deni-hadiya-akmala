@@ -64,3 +64,48 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+## Cara Menginstal dan Menjalankan Aplikasi pada Lingkungan Pengembangan Lokal
+
+### Langkah-langkah Instalasi:
+
+1. **Clone Repository**
+
+   ```bash
+   git clone https://github.com/deni-hadiya-akmala/laravel_deni-hadiya-akmala.git
+   ```
+
+   2. **Masuk ke direktori proyek**:
+    ```bash
+    cd laravel_deni-hadiya-akmala
+    ```
+3. **Install dependencies menggunakan Composer**:
+    ```bash
+    composer install
+    ```
+4. **Copy file `.env.example` menjadi `.env`**:
+    ```bash
+    cp .env.example .env
+    ```
+5. **Generate aplikasi key**:
+    ```bash
+    php artisan key:generate
+    ```
+6. **Sesuaikan pengaturan basis data pada file `.env`**:
+    ```dotenv
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=laravel_deni_db
+    DB_USERNAME=...
+    DB_PASSWORD=...
+    ```
+7. **Migrasi dan seed database**:
+    ```bash
+    php artisan migrate --seed
+    ```
+8. **Jalankan server Laravel**:
+    ```bash
+    php artisan serve  

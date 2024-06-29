@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laravel 10 Custom User Registration & Login Tutorial - AllPHPTricks.com</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
@@ -16,6 +16,27 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <!-- Left-aligned menu -->
+            {{-- <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ URL('/') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+            </ul> --}}
+
+            <!-- Central menu -->
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Central Menu Item 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Central Menu Item 2</a>
+                </li>
+            </ul>
+
+            <!-- Right-aligned menu -->
             <ul class="navbar-nav ms-auto">
                 @guest
                     <li class="nav-item">

@@ -29,8 +29,8 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::post('/logout', 'logout')->name('logout');
 });
-
-
-
-Route::apiResource('pasien', PasienController::class);
-Route::apiResource('rumahsakit', RumahSakitController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.index');
+    Route::get('/rumahsakit', [RumahSakitController::class, 'index'])->name('rumahsakit.index');
+    // Other web routes that require authentication
+});

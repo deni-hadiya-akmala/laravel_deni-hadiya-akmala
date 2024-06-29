@@ -18,8 +18,6 @@ use App\Http\Controllers\RumahSakitController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+    
 });
 
-
-Route::apiResource('pasien', PasienController::class);
-Route::apiResource('rumahsakit', RumahSakitController::class);

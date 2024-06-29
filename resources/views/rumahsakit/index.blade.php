@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-4">
     <h1>Rumah Sakit</h1>
-    <button class="btn btn-primary mb-2" onclick="showCreateForm()">Tambah Rumah Sakit</button>
+    <button class="btn btn-primary mb-4 mt-1" onclick="showCreateForm()">Tambah Rumah Sakit</button>
     <table class="table table-bordered" id="rumahsakitTable">
         <thead>
             <tr>

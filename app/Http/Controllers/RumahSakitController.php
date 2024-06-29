@@ -44,9 +44,10 @@ class RumahSakitController extends Controller
                     return '-';
                 })
                 ->addColumn('action', function ($row) {
-                    $btn = '<button class="btn btn-warning btn-sm edit" data-id="' . $row->id . '">Ubah</button>';
+                    $btn = "<div class='d-flex justify-content-center'>";
+                    $btn .= '<button class="btn btn-warning btn-sm mr-2 edit" data-id="' . $row->id . '">Ubah</button>';
                     $btn .= ' <button class="btn btn-danger btn-sm delete" data-id="' . $row->id . '">Hapus</button>';
-                    return $btn;
+                    return $btn.'</div>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);

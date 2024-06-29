@@ -27,6 +27,8 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <!-- Central menu -->
+            @guest
+            @else  
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('pasien')) ? 'active' : '' }}" href="{{ route('pasien.index') }}">Pasien</a>
@@ -35,6 +37,7 @@
                     <a class="nav-link {{ (request()->is('rumahsakit')) ? 'active' : '' }}" href="{{ route('rumahsakit.index') }}">Rumah Sakit</a>
                 </li>
             </ul>
+            @endguest
 
             <!-- Right-aligned menu -->
             <ul class="navbar-nav ml-auto">

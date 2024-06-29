@@ -59,5 +59,43 @@ class RumahSakitController extends Controller
 
         return view('rumahsakit.index', compact('topSelling', 'bottomSelling'));
     }
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'nama' => 'required|string',
+            'alamat' => 'required',
+            'email' => 'required',
+            'telepon' => 'required',
+        ]);
+
+        $RumahSakit = RumahSakit::create($validated);
+
+        return response()->json($RumahSakit, 201);
+    }
+    public function update(Request $request, $id)
+    {
+        $RumahSakit = RumahSakit::findOrFail($id);
+
+        $validated = $request->validate([
+            'nama' => 'required|string',
+            'alamat' => 'required',
+            'email' => 'required',
+            'telepon' => 'required',
+        ]);
+
+        $RumahSakit->update($validated);
+
+        return response()->json($RumahSakit);
+    }
+    public function destroy($id)
+    {
+        RumahSakit::destroy($id);
+
+        return response()->json(null, 204);
+    }
+    public function show($id)
+    {
+        return response()->json(RumahSakit::findOrFail($id));
+    }
 
 }

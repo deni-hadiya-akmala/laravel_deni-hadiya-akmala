@@ -18,7 +18,7 @@ use App\Http\Controllers\RumahSakitController;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('auth/login');
 });
 
 Route::controller(LoginRegisterController::class)->group(function() {
